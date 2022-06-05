@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+
+  "name": "BuffAutoSell",
+  "description": "This extension auto-adjust item sell prices to stay competitive down to a price limit",
+  "version": "1.0",
+
+  "content_scripts": [
+   {
+     "matches": ["https://buff.163.com/market/sell_order/on_sale*"],
+     "js": ["jquery-1.10.2.min.js", "jquery.cookie.js", "onsaleContentScript.js"],
+     "run_at": "document_end"
+   }
+ ],
+    
+  "permissions": [ "webRequest" ]
+ 
+}
