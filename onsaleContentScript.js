@@ -1,22 +1,43 @@
+//this variable stores the goods that if they are in our inventory, and visible on the first page (50 items) of our seller page, will be auto-adjusted in price according to these settings
 var settingsForGoodsForSale = {
 		"33813" : { 
 			goodId : 33813, //chroma case
 			minSellPriceAsPctOfSteamMarket : 0.70, //minimum price we will sell at (percentage of steam market reference price)
-			alternateMinSalePrice : 5.68 //if we can achieve this price, we will still sell
+			alternateMinSalePrice : 6.5 //price must also be above this absolute price (absolute, not like the percentage above)
 			},
-		"12345678" : { 
-			goodId : 12345678, //chroma case
+		"34987" : { 
+			goodId : 34987, //gamma case 2
+			minSellPriceAsPctOfSteamMarket : 0.75, //minimum price we will sell at (percentage of steam market reference price)
+			alternateMinSalePrice : 4.9 //price must also be above this absolute price (absolute, not like the percentage above)
+			},
+		"35883" : { 
+			goodId : 35883, //chroma case
 			minSellPriceAsPctOfSteamMarket : 0.70, //minimum price we will sell at (percentage of steam market reference price)
-			alternateMinSalePrice : 99999 //if we can achieve this price, we will still sell
+			alternateMinSalePrice : 5.0 //price must also be above this absolute price (absolute, not like the percentage above)
+			},
+		"33820" : { 
+			goodId : 33820, //chroma case 3
+			minSellPriceAsPctOfSteamMarket : 0.75, //minimum price we will sell at (percentage of steam market reference price)
+			alternateMinSalePrice : 5.25//price must also be above this absolute price (absolute, not like the percentage above)
+			},
+		"36354" : { 
+			goodId : 36354, //revolver case
+			minSellPriceAsPctOfSteamMarket : 0.8, //minimum price we will sell at (percentage of steam market reference price)
+			alternateMinSalePrice : 5.00//price must also be above this absolute price (absolute, not like the percentage above)
+			},
+		"35086" : { 
+			goodId : 35086, //glove case
+			minSellPriceAsPctOfSteamMarket : 0.8, //minimum price we will sell at (percentage of steam market reference price)
+			alternateMinSalePrice : 21//price must also be above this absolute price (absolute, not like the percentage above)
 			}
 };
 
 var currentSellOrders = [];
 
-//refresh page every minute
+//refresh page every 5 minutes
 window.setTimeout( function() {
   window.location.reload();
-}, 60000);
+}, 300000);
 
 repriceForsaleItems();
 
@@ -61,8 +82,9 @@ function repriceForsaleItems() {
 	                success: function (result) {
 						if (result.code == "OK")
 						{
-							currentGood.steamPriceInRMB = Number(result.data.goods_infos[currentGood.goodsId].steam_price_cny);
-							
+							if (result.data.goods_infos.hasOwnProperty(currentGood.goodsId)) {
+								currentGood.steamPriceInRMB = Number(result.data.goods_infos[currentGood.goodsId].steam_price_cny);
+							}
 							for (const forSaleItem of result.data.items)
 							{
 								if (currentGood.prices[forSaleItem.price] === undefined){
@@ -103,7 +125,7 @@ function repriceForsaleItems() {
 	  		for (const price in processedGoodDetails.prices) {
 	  			var countAtPrice = processedGoodDetails.prices[price];
 	  			if (countAtPrice > 15) {
-	  				priceToSellAt = Number(price) - 0.01; //front-run the large-order by 1 cent
+	  				priceToSellAt = Number(price); //match best price (better not front-run as too much presure will lower price)
 	  				break;
 	  			}
 	  		}
@@ -176,5 +198,3 @@ function repriceForsaleItems() {
 		}
 	}
 }
-
-
