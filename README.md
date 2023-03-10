@@ -3,7 +3,8 @@
 This is an extremely rudimentary chrome extension that I spent about 4 hours on.
 This extension auto-adjust item sell prices to stay competitive down to a price limit on buff.
 Currency should be set to RMB for correct price granularity.
-Do not use for non-csgo items as 'game' is hard-coded to csgo.
+Do not use for non-csgo items as 'game' is hard-coded to csgo (code modification would be required).
+Do not use if buff changes commission from 2.5%, as commission is hard-coded (code modification would be required).
 
 ____________________________________________________________________________________________________________________________________________________________________
 Whilst rudimentary, the strategy is quite optimal for selling cases.
