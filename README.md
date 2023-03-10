@@ -5,7 +5,14 @@ This extension auto-adjust item sell prices to stay competitive down to a price 
 Currency should be set to RMB for correct price granularity.
 Do not use for non-csgo items as 'game' is hard-coded to csgo (code modification would be required).
 Do not use if buff changes commission from 2.5%, as commission is hard-coded (code modification would be required).
+____________________________________________________________________________________________________________________________________________________________________
+The problem this script tries to solve -
 
+Buff is a site that has high volume throughput similar or exceeding steam community market on many items. It's not exactly clear what their volumes are as they don't publish them but they do the majority of high end skin trading, and even for cheap skins they can exceed SCM volumes.
+
+If you try to sell high volume items (cases, capsules etc), you can find yourself in the frustrating position that someone beats your order price by 1 RMB, which is less than 0.2 cents US. And people will just keep jumping in front of you and so it can be hard to sell in bulk. Some of these 'people' might be bots as well.
+
+This strategy tries to find the optimal solution to this problem to maximize sales volume whilst minimizing price impact - if we have a large number of items to sell, we do not want to drive the price down so we would rather sell more slowly and achieve a better price.
 ____________________________________________________________________________________________________________________________________________________________________
 Whilst rudimentary, the strategy is quite optimal for selling cases.
 The strategy will match the lowest price, but it will not move in front of the lowest price. Moving in front causes price competition between bots and the sad scenario of prices going lower and lower.
