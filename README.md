@@ -7,11 +7,17 @@ Currency should be set to RMB for correct price granularity.
 ____________________________________________________________________________________________________________________________________________________________________
 Whilst rudimentary, the strategy is quite optimal for selling cases.
 The strategy will match the lowest price, but it will not move in front of the lowest price. Moving in front causes price competition between bots and the sad scenario of prices going lower and lower.
+
 The strategy will also allow smaller orders to go in front of us. Less that 15 items are allowed to go in front (at each price level) as we do not want small orders causing us to lower our price - small orders are sold quickly, so we don't need to match them. There might be more than 15 in front in total if they span multiple price levels.
+
 This setting could potentially be abused by other participants to make us lower our prices. If this is a concern, we can raise this from 15 to a higher number e.g. 50 or 100.
+
 It will auto-refresh and run the logic every 5 minutes to keep the orders competitively priced.
+
 The strategy only sells 50 items at a time (the number that are available on the for sale page). Aside from not wanting to be a spammy bot, waiting 5 minutes means that human users will not have the patience to outcompete our price adjustments, they will lose focus and eventually do other things. 
 In addition, the 5 minute wait gives time for big buyers to trade against other sell orders (other people selling aside from us) and push the price up, which means next time we adjust our prices, the market can be higher and we might sell at a better price.
+
+The best way to use this strategy is to buy more shelf space if you have the credit, then list a large number of items at a very high price, then the strategy will take care of moving up to 50 items at a time to a good price for sale and you won't have to re-list items too often.
 ____________________________________________________________________________________________________________________________________________________________________
 
 The items for sale to be auto-adjusted in price should be configured in 'settingsForGoodsForSale' which is at top of onsaleContentScript.js.
