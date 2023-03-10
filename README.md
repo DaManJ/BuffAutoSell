@@ -16,7 +16,10 @@ This setting could potentially be abused by other participants to make us lower 
 
 It will auto-refresh and run the logic every 5 minutes to keep the orders competitively priced.
 
-The strategy only sells 50 items at a time (the number that are available on the for sale page). Aside from not wanting to be a spammy bot, waiting 5 minutes means that human users will not have the patience to outcompete our price adjustments, they will lose focus and eventually do other things. 
+The strategy only sells 50 items at a time (the number that are available on the for sale page). Aside from not wanting to be a spammy bot, waiting 5 minutes means that human users will not have the patience to outcompete our price adjustments, they will lose focus and eventually do other things.
+
+50 items is also good from a psychological perspective. If someone sees 200 sell orders in front of them they will be tempted to move to the best price because they fear it will take too long for them to sell. But if we only sell 50 orders at a time, other sellers may be more patient and not try to beat our price as they know they will sell some soon. Also note that we never beat others prices - we simply match them, but after they sell and we are first in queue, they might be tempted to move in front of us at a lower price. 50 should minimize this occurence at the same time as allowing us to get good enough sales throughput.
+
 In addition, the 5 minute wait gives time for big buyers to trade against other sell orders (other people selling aside from us) and push the price up, which means next time we adjust our prices, the market can be higher and we might sell at a better price.
 
 The best way to use this strategy is to buy more shelf space if you have the credit, then list a large number of items at a very high price, then the strategy will take care of moving up to 50 items at a time to a good price for sale and you won't have to re-list items too often.
